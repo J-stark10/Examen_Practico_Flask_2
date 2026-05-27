@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row g-4">
+
+    <!-- PACIENTES -->
+    <div class="col-md-4">
+
+        <div class="card border-0 shadow h-100 dashboard-card card-pacientes">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <p class="text-secondary mb-1">
+                            Pacientes
+                        </p>
+
+                        <h2 class="fw-bold text-light">
+                            {{ total_pacientes }}
+                        </h2>
+
+                    </div>
+
+                    <div class="icon-box pacientes-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MEDICOS -->
+    <div class="col-md-4">
+
+        <div class="card border-0 shadow h-100 dashboard-card card-medicos">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <p class="text-secondary mb-1">
+                            Médicos
+                        </p>
+
+                        <h2 class="fw-bold text-light">
+                            {{ total_medicos }}
+                        </h2>
+
+                    </div>
+
+                    <div class="icon-box medicos-icon">
+                        <i class="bi bi-heart-pulse-fill"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CITAS -->
+    <div class="col-md-4">
+
+        <div class="card border-0 shadow h-100 dashboard-card card-citas">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <p class="text-secondary mb-1">
+                            Citas Realizadas
+                        </p>
+
+                        <h2 class="fw-bold text-light">
+                            {{ total_citas }}
+                        </h2>
+
+                    </div>
+
+                    <div class="icon-box citas-icon">
+                        <i class="bi bi-calendar-check-fill"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card border-0 shadow-lg mt-4">
+
+    <div class="card-body p-5 text-center">
+
+        <h1 class="display-6 fw-bold mb-3 text-light">
+            Bienvenido a MediControl
+        </h1>
+
+        <p class="text-secondary fs-5">
+            Sistema de gestión médica para administrar pacientes,
+            médicos y citas de manera eficiente.
+        </p>
+
+    </div>
+
+</div>
+
+<style>
+
+    .dashboard-card{
+        background: #111827;
+        border-radius: 20px;
+        transition: 0.3s ease;
+        border: 1px solid #1f2937;
+    }
+
+    .dashboard-card:hover{
+        transform: translateY(-4px);
+    }
+
+    .card-pacientes{
+        border-left: 4px solid #3b82f6;
+    }
+
+    .card-medicos{
+        border-left: 4px solid #10b981;
+    }
+
+    .card-citas{
+        border-left: 4px solid #f59e0b;
+    }
+
+    .icon-box{
+        width: 65px;
+        height: 65px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+    }
+
+    .pacientes-icon{
+        background: rgba(59,130,246,0.15);
+        color: #60a5fa;
+    }
+
+    .medicos-icon{
+        background: rgba(16,185,129,0.15);
+        color: #34d399;
+    }
+
+    .citas-icon{
+        background: rgba(245,158,11,0.15);
+        color: #fbbf24;
+    }
+
+</style>
+
+{% endblock %}

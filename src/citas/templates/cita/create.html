@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-7">
+
+        <div class="card shadow-lg border-0">
+
+            <div class="card-body p-4 text-white">
+
+                <h3 class="fw-bold mb-4 text-white">
+
+                    <i class="bi bi-calendar-plus-fill text-success"></i>
+                    Registrar Cita
+
+                </h3>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label text-white">
+                            Fecha
+                        </label>
+
+                        <input
+                            type="date"
+                            name="fecha"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label text-white">
+                            Hora
+                        </label>
+
+                        <input
+                            type="time"
+                            name="hora"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label text-white">
+                            Médico
+                        </label>
+
+                        <select
+                            name="medico_id"
+                            class="form-select"
+                            required>
+
+                            <option value="">
+                                Seleccione un médico
+                            </option>
+
+                            {% for medico in medicos %}
+
+                            <option value="{{ medico.id }}">
+                                {{ medico.nombre }} - {{ medico.especialidad }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-4">
+
+                        <label class="form-label text-white">
+                            Paciente
+                        </label>
+
+                        <select
+                            name="paciente_id"
+                            class="form-select"
+                            required>
+
+                            <option value="">
+                                Seleccione un paciente
+                            </option>
+
+                            {% for paciente in pacientes %}
+
+                            <option value="{{ paciente.id }}">
+                                {{ paciente.nombre }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="d-flex gap-2">
+
+                        <button
+                            type="submit"
+                            class="btn btn-success">
+
+                            <i class="bi bi-save"></i>
+                            Guardar
+
+                        </button>
+
+                        <a href="{{ url_for('citas.index') }}"
+                           class="btn btn-secondary">
+
+                            Cancelar
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediControl</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        body{
+            background: #0b1120;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .navbar{
+            background: #111827;
+            border-bottom: 1px solid #1f2937;
+        }
+
+        .navbar-brand{
+            font-size: 1.3rem;
+        }
+
+        .nav-link{
+            color: #cbd5e1 !important;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover{
+            color: white !important;
+        }
+
+        .card{
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 20px;
+        }
+
+        .dashboard-card{
+            transition: 0.3s ease;
+            overflow: hidden;
+        }
+
+        .dashboard-card:hover{
+            transform: translateY(-5px);
+        }
+
+        .icon-box{
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.15);
+            font-size: 2rem;
+        }
+
+        .table{
+            color: white;
+        }
+
+        .form-control,
+        .form-select{
+            background-color: #1e293b;
+            color: white;
+            border: 1px solid #334155;
+        }
+
+        .form-control:focus,
+        .form-select:focus{
+            background-color: #1e293b;
+            color: white;
+            border-color: #3b82f6;
+            box-shadow: none;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark shadow">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="bi bi-heart-pulse-fill"></i>
+                MediControl
+            </a>
+
+            <div class="navbar-nav">
+                
+                <a class="nav-link" href="{{ url_for('core.index')}}">
+                    Inicio
+                </a>
+
+                <a class="nav-link" href="{{ url_for('medicos.index') }}">
+                    Médicos
+                </a>
+
+                <a class="nav-link" href="{{ url_for('pacientes.index') }}">
+                    Pacientes
+                </a>
+
+                <a class="nav-link" href="{{ url_for('citas.index') }}">
+                    Citas
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="container py-4">
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+</body>
+</html>

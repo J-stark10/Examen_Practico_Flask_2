@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="fw-bold text-light">
+
+            <i class="bi bi-calendar2-check-fill text-success"></i>
+            Gestión de Citas
+
+        </h2>
+
+        <p style="color:#94a3b8;" class="mb-0">
+            Administración de citas médicas
+        </p>
+
+    </div>
+
+    <a href="{{ url_for('citas.create') }}"
+       class="btn btn-success rounded-pill px-4">
+
+        <i class="bi bi-plus-circle"></i>
+        Nueva Cita
+
+    </a>
+
+</div>
+
+
+<div class="card shadow-lg border-0">
+
+    <div class="card-body p-4">
+
+        <div class="table-responsive">
+
+            <table class="table align-middle custom-table">
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Médico</th>
+                        <th>Paciente</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for cita in citas %}
+
+                    <tr>
+
+                        <td>{{ cita.id }}</td>
+
+                        <td>{{ cita.fecha }}</td>
+
+                        <td>{{ cita.hora }}</td>
+
+                        <td>
+
+                            <span class="badge medico-badge">
+                                {{ cita.medico.nombre }}
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="badge paciente-badge">
+                                {{ cita.paciente.nombre }}
+                            </span>
+
+                        </td>
+
+                        <td class="text-center">
+
+                            <a href="{{ url_for('citas.edit', id=cita.id) }}"
+                               class="btn btn-sm btn-outline-warning rounded-pill">
+
+                                <i class="bi bi-pencil-square"></i>
+
+                            </a>
+
+                            <a href="{{ url_for('citas.delete', id=cita.id) }}"
+                               class="btn btn-sm btn-outline-danger rounded-pill">
+
+                                <i class="bi bi-trash"></i>
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .custom-table{
+        margin-bottom: 0;
+        color: #e2e8f0;
+    }
+
+    .custom-table thead th{
+        background: #0f172a;
+        color: #94a3b8;
+        border-bottom: 1px solid #334155;
+        padding: 16px;
+        font-weight: 600;
+    }
+
+    .custom-table tbody tr{
+        border-bottom: 1px solid #1e293b;
+        transition: 0.2s ease;
+    }
+
+    .custom-table tbody tr:hover{
+        background: rgba(148,163,184,0.05);
+    }
+
+    .custom-table td{
+        padding: 16px;
+        border-bottom: none;
+        color: #cbd5e1;
+    }
+
+    .medico-badge{
+        background: rgba(59,130,246,0.15);
+        color: #60a5fa;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: 500;
+    }
+
+    .paciente-badge{
+        background: rgba(16,185,129,0.15);
+        color: #34d399;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: 500;
+    }
+
+</style>
+
+{% endblock %}
