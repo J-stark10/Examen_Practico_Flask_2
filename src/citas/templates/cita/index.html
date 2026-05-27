@@ -89,6 +89,7 @@
                             </a>
 
                             <a href="{{ url_for('citas.delete', id=cita.id) }}"
+                            onclick="return confirm('¿Estás seguro de eliminar esta cita?')"
                                class="btn btn-sm btn-outline-danger rounded-pill">
 
                                 <i class="bi bi-trash"></i>
@@ -117,29 +118,36 @@
     .custom-table{
         margin-bottom: 0;
         color: #e2e8f0;
+        border-collapse: separate;
+        border-spacing: 0;
     }
 
     .custom-table thead th{
-        background: #0f172a;
+        background-color: #0f172a;
         color: #94a3b8;
         border-bottom: 1px solid #334155;
         padding: 16px;
         font-weight: 600;
+        letter-spacing: .5px;
     }
 
     .custom-table tbody tr{
+        background-color: #111827;
         border-bottom: 1px solid #1e293b;
-        transition: 0.2s ease;
+        transition: all .2s ease;
     }
 
     .custom-table tbody tr:hover{
-        background: rgba(148,163,184,0.05);
+        background-color: #1e293b;
+        transform: scale(1.002);
     }
 
     .custom-table td{
+        background-color: #111827;
+        color: #cbd5e1;
         padding: 16px;
         border-bottom: none;
-        color: #cbd5e1;
+        vertical-align: middle;
     }
 
     .medico-badge{
@@ -148,6 +156,7 @@
         padding: 8px 14px;
         border-radius: 999px;
         font-weight: 500;
+        border: 1px solid rgba(59,130,246,0.25);
     }
 
     .paciente-badge{
@@ -156,6 +165,24 @@
         padding: 8px 14px;
         border-radius: 999px;
         font-weight: 500;
+        border: 1px solid rgba(16,185,129,0.25);
+    }
+
+    .btn-outline-warning,
+    .btn-outline-danger{
+        border-width: 2px;
+    }
+
+    .btn-outline-warning:hover,
+    .btn-outline-danger:hover{
+        transform: translateY(-1px);
+        transition: .2s ease;
+    }
+
+    .card{
+        background-color: #111827;
+        border: 1px solid #1e293b !important;
+        border-radius: 18px;
     }
 
 </style>

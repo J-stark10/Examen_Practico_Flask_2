@@ -7,24 +7,28 @@ from src.pacientes.models import Paciente
 
 bp_citas = Blueprint('citas', __name__, template_folder='templates')
 
+
 @bp_citas.route('/')
 def index():
     citas = Cita.query.all()
     return render_template('cita/index.html', citas=citas)
 
-@bp_citas.route('/create', methods=['GET','POST'])
+
+@bp_citas.route('/create', methods=['GET', 'POST'])
 def create():
 
     medicos = Medico.query.all()
     pacientes = Paciente.query.all()
 
     if request.method == 'POST':
+
         fecha_str = request.form.get('fecha')
-        hora = request.form.get('hora')
+        hora_str = request.form.get('hora')
         medico_id = request.form.get('medico_id')
         paciente_id = request.form.get('paciente_id')
 
         fecha = datetime.strptime(fecha_str, '%Y-%m-%d').date()
+        hora = datetime.strptime(hora_str, '%H:%M').time()
 
         cita = Cita(
             fecha=fecha,
@@ -44,20 +48,37 @@ def create():
         pacientes=pacientes
     )
 
-@bp_citas.route('/edit/<int:id>', methods=['GET','POST'])
+
+@bp_citas.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit(id):
 
-    cita = Cita.query.get(id)
+    cita = Cita.query.get_or_404(id)
+
     medicos = Medico.query.all()
     pacientes = Paciente.query.all()
 
     if request.method == 'POST':
-        fecha_str = request.form.get('fecha')
 
-        cita.fecha = datetime.strptime(fecha_str, '%Y-%m-%d').date()
-        cita.hora = request.form.get('hora')
-        cita.medico_id = int(request.form.get('medico_id'))
-        cita.paciente_id = int(request.form.get('paciente_id'))
+        fecha_str = request.form.get('fecha')
+        hora_str = request.form.get('hora')
+
+        cita.fecha = datetime.strptime(
+            fecha_str,
+            '%Y-%m-%d'
+        ).date()
+
+        cita.hora = datetime.strptime(
+            hora_str,
+            '%H:%M'
+        ).time()
+
+        cita.medico_id = int(
+            request.form.get('medico_id')
+        )
+
+        cita.paciente_id = int(
+            request.form.get('paciente_id')
+        )
 
         db.session.commit()
 
@@ -70,9 +91,12 @@ def edit(id):
         pacientes=pacientes
     )
 
+
 @bp_citas.route('/delete/<int:id>')
 def delete(id):
-    cita = Cita.query.get(id)
+
+    cita = Cita.query.get_or_404(id)
+
     db.session.delete(cita)
     db.session.commit()
 
